@@ -15,8 +15,6 @@ class Token:
         password2 = password + salt_value
         input_password_salted = hashlib.sha512(password2.encode()).hexdigest()
 
-
-
         return input_password_salted
 
 
