@@ -1,6 +1,6 @@
 from dbconnect import db_connection
-import hashlib, binascii
-from hashlib import pbkdf2_hmac
+import hashlib
+import jwt
 
 query = db_connection()
 
@@ -15,7 +15,17 @@ class Token:
         password2 = password + salt_value
         input_password_salted = hashlib.sha512(password2.encode()).hexdigest()
 
-        return input_password_salted
+        if input_password_salted == salted_password:
+            print("Password correcto")
+            role_query = "SELECT role FROM users WHERE username=" + '"' + username + '"'
+            role = query.db_query(role_query)
+            encoded_jwt = jwt.encode({"role": role}, "my2w7wjd7yXF64FIADfJxNs1oupTGAuW", algorithm='HS256')
+            return encoded_jwt
+
+        else:
+            return "password incorrecto"
+
+
 
 
 class Restricted:
