@@ -33,4 +33,5 @@ class Restricted:
     def access_data(self, authorization):
 
 
+
         return 'You are under protected data'
