@@ -31,4 +31,6 @@ class Token:
 class Restricted:
 
     def access_data(self, authorization):
-        return 'test'
+
+
+        return 'You are under protected data'
